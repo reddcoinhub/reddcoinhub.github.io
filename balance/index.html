@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Check Reddcoin Balance | ReddCoinHub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="Check the balance of any Reddcoin-address">
+<meta property="og:title" content="REDDCOIN BALANCE-CHECKER">
+<meta property="og:type" content="website">
+<meta property="og:image" content="../ticker/img/reddcoinlogo.png">
+<meta property="og:url" content="http://reddcoinhub.com/balance">
+<meta property="og:description" content="Check the balance of any Reddcoin-address">
+<link rel="shortcut icon" type="image/x-icon" href="../ticker/img/favicon.ico">
+  <style type="text/css">
+body {
+background: url(../ticker/img/reddcoin.png);
+font-family: Arial, Helvetica, sans-serif;
+}
+
+#content {
+width:300px;
+height:200px;
+position:absolute;
+left:50%;
+top:50%;
+margin:-100px 0 0 -150px;
+text-align: center;
+}
+
+.label {
+color: #1D4F65;
+}
+
+#addressField {
+width: 100%;
+}
+
+.balance {
+margin-top: 20px;
+}
+
+#value {
+margin-top: 5px;
+font-size: 25px;
+color: white;
+}
+</style>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script>
+  $(document).ready(function() {
+  if (localStorage.getItem("addressData") === null) {
+  }
+  else {
+   var address = localStorage.getItem("addressData");
+   $("#addressField").val(address);
+  $.getJSON('http://jsonp.jit.su/?callback=?&url=http://cryptexplorer.com/chain/ReddCoin/q/addressbalance/' + address, function(data){
+var str2 = "ERROR";
+    $("#container").html(data);
+ });
+  }
+ $("#submit").click(function() {
+ if($("#addressField").val().length != 0) {
+   localStorage.setItem("addressData", $("#addressField").val());
+ }
+});
+});
+</script>
+</head>
+<body>
+<div id="content">
+<form>
+<div class="label">Reddcoin Address:</div>
+<input type="text" id="addressField"><br />
+<input type="submit" value="Submit" id="submit">
+</form>
+<div class="label balance">Balance: </div>
+<div id="value">
+<span id="container">--</span> RDD
+</div>
+</div>
+</body>
+</html>

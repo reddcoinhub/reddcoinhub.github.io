@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>REDDCOIN TICKER</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/normal.css">
+<link rel="stylesheet" media="screen and (max-width: 450px)" href="css/medium.css">
+<link rel="stylesheet" media="screen and (max-width: 420px)" href="css/smaller.css">
+
+<meta name="description" content="Stay up to date with ReddCoin - Live ReddCoin ticker">
+<meta property="og:title" content="REDDCOIN TICKER">
+<meta property="og:type" content="website">
+<meta property="og:image" content="img/reddcoinlogo.png">
+<meta property="og:url" content="http://reddcoinhub.com/ticker">
+<meta property="og:description" content="Stay up to date with ReddCoin - Live ReddCoin ticker">
+<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+<script type='text/javascript' src='http://code.jquery.com/jquery-1.7.js'></script>
+<script>
+$(window).load(function () {
+	 $.ajaxSetup({ cache: false });
+    update();
+    setInterval(function () {
+        update();
+    }, 40000);
+});
+
+function update() {
+	 var btcPrice = 0;
+    $.getJSON("../mininginfo.json", function (data) {
+        $('.hashrate').text(data.networkhashps / 1000000);
+        $('.difficulty').text(data.difficulty);
+    });
+    $.ajax({
+        url: "http://json2jsonp.com/?url=http://pubapi.cryptsy.com/api.php?method=singlemarketdata%26marketid=169&callback=cbfunc",
+        jsonp: "callback",
+        dataType: "jsonp",
+        data: {
+            format: "json"
+        },
+        success: function (data) {
+        		btcPrice = data.return.markets.RDD.lasttradeprice;
+            $('.bitcoin-price').text("BTC " + btcPrice);
+            $.ajax({
+        url: "http://json2jsonp.com/?url=https://www.bitstamp.net/api/ticker/&callback=cbfunc",
+        jsonp: "callback",
+        dataType: "jsonp",
+        data: {
+            format: "json"
+        },
+        success: function (data) {
+        		usdPrice = data.last * btcPrice;
+        		usdPrice = usdPrice.toFixed(7);
+        		$('.dollar-price').text("$" + usdPrice);
+            document.title = "$ " + usdPrice;
+        }
+    });
+        }
+    });
+    
+    $.ajax({
+        url: "http://json2jsonp.com/?url=http://coinmarketcap.northpole.ro/api/all.json&callback=cbfunc",
+        jsonp: "callback",
+        dataType: "jsonp",
+        data: {
+            format: "json"
+        },
+        success: function (data) {
+            items = data.markets;
+            $.each(items, function () {
+                if (this.name == "ReddCoin") { 
+        				  $('.coins').text(this.totalSupply);
+                    $('.marketcap').text(this.marketCap);
+                };
+            });
+        }
+    });
+    dt = new Date($.now());
+    time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+    $(".current-time").text("Last updated: " + time);
+};
+</script>
+<body style="">
+
+<div id="container">
+<div id="value"><p class="dollar-price">0</p>
+<p class="bitcoin-price">BTC 0</p>
+<table id="coincap">
+<tbody><tr><td class="coincaptd whiteborder">
+<p class="difdata">Market Cap<br>$ <span class="marketcap"></span></p></td>
+<td class="coincaptd"><p class="difdata">Coins Mined<br><span class="coins"></span></p></td></tr></tbody></table>
+<table id="bhd"><tbody><tr>
+<td class="bhdtd whiteborder"><p class="difdata">Hashrate<br> <span class="hashrate"></span> MH/s</p></td>
+<td class="bhdtd"><p class="difdata">Difficulty<br> <span class="difficulty"></span></p></td></tr></tbody>
+</table>
+<p class="current-time"></p>
+
+</div>
+</div>
+
+</body></html>

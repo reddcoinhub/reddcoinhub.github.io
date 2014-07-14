@@ -1,0 +1,13 @@
+{
+    "blocks" : 135306,
+    "currentblocksize" : 0,
+    "currentblocktx" : 0,
+    "difficulty" : 27.63454516,
+    "errors" : "",
+    "generate" : false,
+    "genproclimit" : -1,
+    "hashespersec" : 0,
+    "networkhashps" : 1675031519,
+    "pooledtx" : 1,
+    "testnet" : false
+}

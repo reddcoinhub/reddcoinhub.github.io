@@ -1,0 +1,125 @@
+	
+html, body {
+    margin:0;
+    padding:0;
+    height: 100%;
+}
+
+body {
+background: url('../img/reddcoin.png') no-repeat center center fixed; 
+   -webkit-background-size: 100%; 
+    -moz-background-size: 100%; 
+    -o-background-size: 100%; 
+    background-size: 100%; 
+    -webkit-background-size: cover; 
+    -moz-background-size: cover; 
+    -o-background-size: cover; 
+    background-size: cover; 
+background-color: #333;
+}
+
+#container {
+position: absolute;
+top: 50%;
+margin-top: -200px; /* half of #value height*/
+left: 0;
+width: 100%;
+}
+
+#value {
+width: 100%;
+color: white;
+font-family: Arial, Helvetica, sans-serif;
+text-align: center;
+margin-left: auto;
+margin-right: auto;
+height: 400px;
+}
+
+#bhd {
+color:white;
+border: 0px;
+margin-top: 15px;
+margin-left: auto;
+margin-right: auto;
+}
+
+#coincap {
+color:white;
+border: 0px;
+margin-top: -10px;
+margin-left: auto;
+margin-right: auto;
+}
+
+.coincaptd {
+width: 170px;
+text-align: center; 
+}
+
+.bhdtd {
+width: 170px;
+text-align: center;
+}
+
+.whiteborder {
+border-right: 1px solid rgba(255, 255, 255, 0.19);
+}
+
+.dollar-price {
+font-size: 90px;
+margin:0;
+}
+
+.bitcoin-price {
+font-size: 35px;
+margin-top: -2px;
+opacity: 0.8;
+}
+
+.blocks {
+font-size: 17px;
+opacity: 0.8;
+}
+
+.difdata {
+font-size: 14px;
+opacity: 0.8;
+margin: 0;
+}
+
+
+.current-time{
+font-size: 10px;
+opacity: 0.4;
+margin-top: 45px;
+margin-bottom: 4px;
+}
+
+.price-loading{
+font-size: 3.625em;
+margin:0;
+}
+
+#donation{
+font-size: 10px;
+opacity: 0.3;
+cursor:pointer;
+}
+
+.donationaddress{
+font-size: 15px;
+opacity: 0.6;
+}
+
+.cap-title {
+font-size: 15px;
+opacity: 0.8;
+margin-bottom: 0px;
+}
+
+h1 {
+margin: 0;
+}
+
+
