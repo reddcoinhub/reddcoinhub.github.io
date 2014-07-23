@@ -2,12 +2,12 @@
 <html>
 <head>
   <title>Count-down to the Reddcoin Block-halving | ReddCoinHub</title>
-  <meta name="description" content="Count down to the ReddCoin Block halving!">
-<meta property="og:title" content="REDDCOIN BlockHalving Count-down">
+  <meta name="description" content="Count-down to the ReddCoin PoSV transition!">
+<meta property="og:title" content="REDDCOIN PoSV-transition Count-down">
 <meta property="og:type" content="website">
 <meta property="og:image" content="../ticker/img/reddcoinlogo.png">
-<meta property="og:url" content="http://reddcoinhub.com/halving">
-<meta property="og:description" content="Count down to the Block halving!">
+<meta property="og:url" content="http://reddcoinhub.com/posvcountdown">
+<meta property="og:description" content="Count-down to the ReddCoin PoSV transition.">
 <link rel="shortcut icon" type="image/x-icon" href="../ticker/img/favicon.ico">
   <style type="text/css">
 body {
@@ -37,9 +37,9 @@ color: white;
   var dataReceived = null;
   function getStuff() {
   $.getJSON('http://jsonp.jit.su/?callback=?&url=http://cryptexplorer.com/chain/ReddCoin/q/getblockcount', function(data){
-    $("#containerblocks").html(240000 - data);
+    $("#containerblocks").html(260799 - data);
     dataReceived = data;
-    $("#containertime").html(Math.round((240000 - dataReceived) * (0.9)));
+    $("#containertime").html(Math.round((260799 - dataReceived) * (0.9)));
  });
  
  }
